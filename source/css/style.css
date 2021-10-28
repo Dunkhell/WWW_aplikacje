@@ -1,0 +1,154 @@
+body {
+  background-color: #212121;
+  color: white;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  height: 100%;
+}
+
+.dropbtn {
+  background-color: #a9a9a9;
+  color: white;
+  padding: 8px;
+  font-size: 14px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #212121;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #f1f1f1;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #444444;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #a9a9a9;
+}
+
+table,
+th,
+td {
+  border-style: solid;
+  border-width: 1px;
+  border-collapse: collapse;
+  border-color: #ffffff;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.table-center {
+  height: 190px;
+  width: 100%;
+  text-align: center;
+}
+
+.container {
+  position: relative;
+}
+
+.topleft {
+  position: absolute;
+  top: 3px;
+  left: 16px;
+}
+
+.topright {
+  position: absolute;
+  top: 3px;
+  right: 16px;
+}
+
+.bottomright {
+  position: absolute;
+  bottom: 3px;
+  right: 16px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+}
+
+.top-row {
+  background-color: #444444;
+  color: #ffffff;
+  font-size: 17px;
+}
+
+#content {
+  height: 600px;
+  padding-bottom: 60px;
+}
+
+#con {
+  min-height: 100%;
+  position: relative;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
+
+.title_khalif {
+  text-align: center;
+  margin-left: 10px;
+  color: white;
+  text-shadow: -2px -2px black;
+}
+.desc {
+  font-size: 20px;
+  color: burlywood;
+  text-shadow: 2px 2px black;
+  margin-left: 20px;
+}
+
+.main_page_button {
+  color: #ffffff;
+  background-color: #444444;
+}
+
+.test-block {
+  width: 200px;
+  border: 2px solid rgba(71, 236, 30, 1);
+  background: rgba(71, 236, 30, 0, 7);
+  text-align: center;
+  color: #000;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

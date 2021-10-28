@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Language" content="en" />
+<meta name="Author" content="Kacper Gruszczynski"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<title>Burj Khalifa</title>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div id="con">
+        <div id="content"> 
+
+            <div class="containter">
+                <h2 class="title_khalif">Burj Khalifa the biggest of them all</h2>
+                <div class="topleft">
+                    <div class="dropdown">
+                        <button class="dropbtn">More info</button>
+                        <div class="dropdown-content">
+                            <a href="index.html">Main Page</a>
+                            <a href="shanghai.html">Shanghai Tower</a>
+                            <a href="al_bait.html">Abraj Al-Bait Clock Tower</a>
+                            <a href="finance_centre.html">Ping An International Finance Centr</a>
+                            <a href="world_tower.html">Lotte World Tower</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div style="height:auto; text-align:justify;">
+                
+                <div  class="left_side" style="margin-right:10px;position: relative;">
+                    <button id="onPressEnlarge" style="float:left; margin-left: 30px; position: absolute;">zoom in</button>
+                    <button id="onPressShrink" style="float:left; margin-left: 110px; position: absolute;">zoom out</button>
+                    <img id="kalifa_1" src="../resources/137px-Burj_Khalifa.jpg" style="float: left; margin-left: 30px; width: 150px; height: 300px;">
+                </div>
+
+                <div  class="right_side" style="margin-left:10px; position:relative">
+                    <img id="onMouseOverEnlarge" src="../resources/240px-Burj_Khalifa.jpg" style="float: right; margin-right: 250px; width: 150px; height: 300px;">
+                </div>
+                <p class="desc">
+                    The Burj Khalifa
+                    known as the Burj Dubai prior to its inauguration in 2010, is a skyscraper in Dubai, United Arab Emirates. With a total height of 829.8 m (2,722 ft, just over half a mile) and a roof height (excluding antenna, but including a 244 m spire) of 828 m (2,717 ft), the Burj Khalifa has been the tallest structure and building in the world since its topping out in 2009, supplanting Taipei 101, the previous holder of that status.
+                </p>
+                <p class="desc">
+                    Construction of the Burj Khalifa began in 2004, with the exterior completed five years later in 2009. The primary structure is reinforced concrete and some of the structural steel for the building originated from the Palace of the Republic in East Berlin, the former East German parliament. The building was opened in 2010 as part of a new development called Downtown Dubai. It is designed to be the centrepiece of large-scale, mixed-use development.
+                    The decision to construct the building is based on the government's decision to diversify from an oil-based economy, and for Dubai to gain international recognition. The building was originally named Burj Dubai but was renamed in honour of the ruler of Abu Dhabi and president of the United Arab Emirates, Khalifa bin Zayed Al Nahyan; Abu Dhabi and the UAE government lent Dubai money to pay its debts. The building broke numerous height records, including its designation as the tallest building in the world.
+                </p>
+                <p class="desc">
+                    Burj Khalifa was designed by Adrian Smith, of Skidmore, Owings & Merrill, whose firm designed the Willis Tower and One World Trade Center. Hyder Consulting was chosen to be the supervising engineer with NORR Group Consultants International Limited chosen to supervise the architecture of the project. The design is derived from the Islamic architecture of the region, such as in the Great Mosque of Samarra. The Y-shaped tripartite floor geometry is designed to optimize residential and hotel space. A buttressed central core and wings are used to support the height of the building. Although this design was derived from Tower Palace III, the Burj Khalifa's central core houses all vertical transportation with the exception of egress stairs within each of the wings.
+                    The structure also features a cladding system which is designed to withstand Dubai's hot summer temperatures. It contains a total of 57 elevators and 8 escalators.
+                </p>
+            </div>
+        </div>
+    </div>    
+
+    <script>
+        $("#onPressEnlarge").on("click", function(){
+            if(!$(this).is(":animated")) {
+                $("#kalifa_1").animate({
+                    width: "+=" + 50,
+                    height: "+=" + 10,
+                });
+            }
+        });
+
+        $("#onPressShrink").on("click", function(){
+            if(!$(this).is(":animated")) {
+                $("#kalifa_1").animate({
+                    width: "-=50px",
+                    height: "-=10px"
+                });
+            }
+        });
+
+        $("#onMouseOverEnlarge").on({
+               "mouseover": function() {
+                   $(this).animate({
+                       width: 300,
+                       height: 600
+                   }, 800);
+               },
+               "mouseout": function() {
+                   $(this).animate({
+                        width: 150,
+                        height: 300
+                   },800);
+               }
+           });
+    </script>
+</body>
+</html>
