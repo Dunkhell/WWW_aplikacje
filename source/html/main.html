@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-<meta http-equiv="Content-Language" content="en" />
-<meta name="Author" content="Kacper Gruszczynski"/>
-<link rel="stylesheet" href="./css/style.css"/>
-<title>Tallest buildings in the world</title>
 
 <body>
     <div id="con">
@@ -13,27 +6,28 @@
                 <div class="topright">
                     <p id="date"> </p>
                 </div>
-                
+
                 <h1 class="center-text">List of 5 of the tallest buildings in the world </h1>
-                
-	            
+
+
                 <div class="topleft">
                     <div class="dropdown">
                         <button class="dropbtn">More info</button>
                         <div class="dropdown-content">
-                            <a href="./src/khalifa.html">Burj Khalifa</a>
-                            <a href="./src/shanghai.html">Shanghai Tower</a>
-                            <a href="./src/al_bait.html">Abraj Al-Bait Clock Tower</a>
-                            <a href="./src/finance_centre.html">Ping An International Finance Centr</a>
-                            <a href="./src/world_tower.html">Lotte World Tower</a>
+                            <a href="?idp=khalifa">Burj Khalifa</a>
+                            <a href="?idp=shanghai">Shanghai Tower</a>
+                            <a href="?idp=al_bait">Abraj Al-Bait Clock Tower</a>
+                            <a href="?idp=finance_centre">Ping An International Finance Centr</a>
+                            <a href="?idp=world_tower">Lotte World Tower</a>
+                            <a href="?idp=videos">Drone footage</a>
                         </div>
                     </div>
                 </div>
             </div>
-        
+
             <table class="table-center">
                 <tr class="top-row">
-                    
+
                     <th>#</th>
                     <th><i><b>Burj Khalifa</b></i></th>
                     <th><i><b>Shanghai Tower</b></i></th>
@@ -81,7 +75,7 @@
                     <td>115</td>
                     <td>123</td>
                 </tr>
-            </table>    
+            </table>
             <FORM METHOD="POST" NAME="background ">
                 <h2>Change your theme here:</h2>
                 <INPUT TYPE="button" VALUE="black-bg(default)" ONCLICK="changeBackground('#212121');">
@@ -89,32 +83,32 @@
                 <input TYPE="button" VALUE="szary" ONCLICK="changeBackground('#c0c0c0');">
             </FORM>
         </div>
-        
-        
+
+
 
         <div id="fotter">
             <div class="containter">
                 <article style="width: 80%;">
-                    <h1 >Is your building higher? Tell us about it.</h1>
-                        <label for="email">Contact email</label>
-                        <br>
-                        <input id="email" placeholder="Enter email">
-                        <br>
-                        <label for="building">Building name</label>
-                        <br>
-                        <input id="building" placeholder="Enter building name">
-                        <br><br>
-                        <input type="submit" value="Wyślij">
-                    </article>
-                    <div class="bottomright"> 
-                        <p id="clock"> </p>
+                    <h1>Is your building higher? Tell us about it.</h1>
+                    <label for="email">Contact email</label>
+                    <br>
+                    <input id="email" placeholder="Enter email">
+                    <br>
+                    <label for="building">Building name</label>
+                    <br>
+                    <input id="building" placeholder="Enter building name">
+                    <br><br>
+                    <input type="submit" value="Wyślij">
+                </article>
+                <div class="bottomright">
+                    <p id="clock"> </p>
 
-                    </div>
+                </div>
             </div>
-        </div>        
+        </div>
     </div>
-    
-</body>
-<script type="text/javascript" src="./js/timedate.js"></script>  
-<script src="./js/color-change.js" type="text/javascript"></script>
+
 </html>
+<script src="js/timedate.js" type="text/javascript" ></script>
+<script src="js/color-change.js" type="text/javascript"></script>
+</body>
