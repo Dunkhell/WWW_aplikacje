@@ -14,7 +14,7 @@ function NewPageForm() {
                     <th><span class='text' id='content'>Content</span></th>
                 </thead>
                 <tbody>
-                    <td><input type='text' name='new_page_title' value='Your site title here...'/></td><td><textarea style='height: 98%; width: 99%' name='new_page_content'>Your site code here...</textarea></td> </tr>       
+                    <td><input type='text' name='new_page_title' placeholder='Your site title here...'/></td><td><textarea style='height: 98%; width: 99%' name='new_page_content' placeholder='Your codes goes here...'></textarea></td> </tr>       
                 </tbody>
             </table>
             <button type='submit'>Save</button>
