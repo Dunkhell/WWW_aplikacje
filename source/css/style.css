@@ -83,6 +83,7 @@ td {
   right: 16px;
 }
 
+
 .bottomright {
   position: absolute;
   bottom: 3px;
@@ -152,3 +153,23 @@ td {
   -ms-user-select: none;
   user-select: none;
 }
+
+#table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:150px;
+  overflow:auto;
+  margin-top:20px;
+}
+#table-wrapper table {
+  width:100%;
+}
+
+.upper-content {
+  vertical-align: text-top;
+}
+
+
+
+

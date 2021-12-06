@@ -5,8 +5,7 @@ $dbpass = "";
 $baza="my_site";
  
 // Create connection
-$link =mysql_connect($dbhost,$dbuser,$dbpass);
-if(!$link) echo '<b>Connetion abrupted</b>';
-if(!mysql_select_db($baza)) echo 'no database.';
- 
-?>
+$link =mysqli_connect($dbhost,$dbuser,$dbpass);
+if(!$link) echo '<b>Connection abrupted</b>';
+if(!mysqli_select_db($link, $baza)) echo 'no database.';
+

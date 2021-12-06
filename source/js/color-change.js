@@ -35,6 +35,8 @@ function openvothcom()
  // them as they were 
 function changeBackground(hexNumber)
 {
+
+
     if (hexNumber == '#212121' || hexNumber == '#c0c0c0') {
         document.body.style.color = "white";
         document.body.style.backgroundColor = hexNumber;

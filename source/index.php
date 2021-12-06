@@ -6,10 +6,15 @@
 <link rel="stylesheet" href="css/style.css" />
 <title>Tallest buildings in the world</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<script>
+    function popupAlert(text)
+    {
+        alert(text);
+    }
+</script>
 <body>
     <?php
-    include("cfg.php");
+//    include("showpage.php");
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
     if ($_GET['idp'] == "") $site = './html/main.html';
@@ -19,6 +24,8 @@
     if ($_GET['idp'] == "shanghai") $site = './html/shanghai.html';
     if ($_GET['idp'] == "world_tower") $site = './html/world_tower.html';
     if ($_GET['idp'] == "videos") $site = './html/videos.html';
+    if ($_GET['idp'] == "admin") $site = './admin.php';
+    if ($_GET['idp'] == "new_page") $site = './new_page.php';
 
     if (file_exists($site)) {
         include($site);
