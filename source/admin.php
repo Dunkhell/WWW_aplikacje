@@ -102,9 +102,9 @@ function handleEditPage() {
     $result = mysqli_query($link, $query);
 
     if($result) {
-        return "Update successful";
+        return "<script>popupAlert('Update successful')</script>";
     }
-    return "Failed updating record!";
+    return "<script>popupAlert('Failed updating record!')</script>";
 
 }
 
@@ -118,9 +118,10 @@ function handleDeletePage() {
     $result = mysqli_query($link, $query);
 
     if($result) {
-        return "Deleted successfully";
+        return "<script>popupAlert('Deleted successfully')</script>";
+
     }
-    return "Failed deleting record!";
+    return "<script>popupAlert('Failed deleting record!')</script>";
 }
 
 
