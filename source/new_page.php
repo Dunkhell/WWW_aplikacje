@@ -26,6 +26,7 @@ function NewPageForm() {
 }
 
 function handleEditPage() {
+    include('cfg.php');
 
     if(empty($_POST['new_page_title'])) {
         return;
@@ -35,7 +36,6 @@ function handleEditPage() {
     $content = htmlspecialchars($_POST['new_page_content']);
 
 
-    include('cfg.php');
     $query = "INSERT INTO page_list (page_title, page_content) VALUES ('$title', '$content')";
     $result = mysqli_query($link, $query);
 

@@ -14,7 +14,7 @@
 </script>
 <body>
     <?php
-//    include("showpage.php");
+    //    include("showpage.php");
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
     if ($_GET['idp'] == "") $site = './html/main.html';
@@ -24,6 +24,7 @@
     if ($_GET['idp'] == "shanghai") $site = './html/shanghai.html';
     if ($_GET['idp'] == "world_tower") $site = './html/world_tower.html';
     if ($_GET['idp'] == "videos") $site = './html/videos.html';
+    if ($_GET['idp'] == "login") $site = './login.php';
     if ($_GET['idp'] == "admin") $site = './admin.php';
     if ($_GET['idp'] == "new_page") $site = './new_page.php';
 

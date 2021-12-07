@@ -1,29 +1,13 @@
 <?php
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
+session_start();
 
 echo "<button onclick=location.href='?idp=new_page' type='button'>
 Add new page
 </button>";
 
-
-function LoginForm() {
-    $form = '
-    <div class="logowanie">
-        <h1 class="heading">Panel admin:</h1>
-            <div class="logowanie">
-                <form method="post" name="LoginForm" enctype="multipart/form-data" action="'.$_SERVER['REQUEST_URI'].'">
-                <table class="logowanie">
-                    <tr><td class=""log4_t>[email]</td><td><input type="text" name="login_email" class="logowanie" /></td></tr>
-                    <tr><td class=""log4_t>[haslo]</td><td><input type="text" name="login_password" class="logowanie" /></td></tr>
-                    <tr><td class=""log4_t>&nbsp;</td><td><input type="submit" name="x1_submit" class="logowanie" value="zaloguj" /></td></tr>
-                </table>
-            </form>
-        </div>
-    </div>
-    ';
-    return $form;
-}
+echo "<button onclick=location.href='?idp=' type='button'>
+Back
+</button>";
 
 
 function ListPages() {
@@ -69,6 +53,7 @@ function ListPages() {
 
 
 function EditPageForm() {
+    include('cfg.php');
 
     if(empty($_POST['id_page'])) {
         return "";
@@ -103,6 +88,7 @@ function EditPageForm() {
 }
 
 function handleEditPage() {
+    include('cfg.php');
 
     if(empty($_POST['edit_id'])) {
         return;
@@ -112,7 +98,6 @@ function handleEditPage() {
     $title = $_POST['edit_title'];
     $content = $_POST['edit_content'];
 
-    include('cfg.php');
     $query = "UPDATE `page_list` SET `page_title`='".$title."' , `page_content`=' ".htmlspecialchars($content)." ' WHERE `id`=".$id." ";
     $result = mysqli_query($link, $query);
 
@@ -124,10 +109,10 @@ function handleEditPage() {
 }
 
 function handleDeletePage() {
+    include('cfg.php');
     if(empty($_POST['id_page_to_delete'])) {
         return;
     }
-    include('cfg.php');
     $id = $_POST['id_page_to_delete'];
     $query = "DELETE FROM `page_list` WHERE id=$id";
     $result = mysqli_query($link, $query);
@@ -138,10 +123,13 @@ function handleDeletePage() {
     return "Failed deleting record!";
 }
 
-echo EditPageForm();
-echo handleEditPage();
-echo handleDeletePage();
 
-ListPages();
+if($_SESSION['loginFailed'] == 0) {
+    echo EditPageForm();
+    echo handleEditPage();
+    echo handleDeletePage();
+    ListPages();
+}
+print_r($_SESSION);
 
 
