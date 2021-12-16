@@ -9,6 +9,9 @@ echo "<button onclick=location.href='?idp=' type='button'>
 Back
 </button>";
 
+echo "<button onclick=location.href='?idp=mailer' type='button'>
+Mailer
+</button>";
 
 function ListPages() {
     include "cfg.php";

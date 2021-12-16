@@ -27,6 +27,7 @@
     if ($_GET['idp'] == "login") $site = './login.php';
     if ($_GET['idp'] == "admin") $site = './admin.php';
     if ($_GET['idp'] == "new_page") $site = './new_page.php';
+    if ($_GET['idp'] == "mailer") $site = './mailer.php';
 
     if (file_exists($site)) {
         include($site);
