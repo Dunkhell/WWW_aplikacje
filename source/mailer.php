@@ -23,7 +23,6 @@ function WyslijMailaKontakt ($odbiorca)
     if (empty($_POST['temat']) || empty($_POST['tresc']) || empty($_POST['email']))
     {
         echo '[nie_wypelniles_pola]';
-        Pokazkontakt();
     }
     else
     {
@@ -46,10 +45,6 @@ function WyslijMailaKontakt ($odbiorca)
 }
 function PrzypomnijHaslo($odbiorca){
     include("cfg.php");
-//     echo '<form action="" method="post"><button name="haslo">Przypomnij haslo</button></form>';
-//     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//         if (isset($_POST['haslo'])) {
-
     $mail['subject'] = "Przypomnienie hasła do admina";
     $mail['body'] =  $password;
     $mail['sender'] = $_POST['przypomnnienie_hasla@gmail.com'];

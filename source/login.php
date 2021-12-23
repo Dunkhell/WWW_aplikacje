@@ -25,7 +25,6 @@ echo LoginForm();
 
 
 if($_SESSION['loginFailed'] == 0) {
-    echo "HERE";
-    header("Location: http://localhost/php/lab1/source/?idp=admin");
+    header("Location: index.php?idp=admin");
     exit();
 }
