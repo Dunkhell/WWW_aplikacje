@@ -79,44 +79,8 @@ function EditPageForm() {
     return $edit_form;
 }
 
-// Funkcja przechwtuje id strony z EditPageForm() i wykonuje odpowiednie zapytanie do bazy SQL aby zedytować stronę
-function handleEditPage() {
-    include('cfg.php');
 
-    if(empty($_POST['edit_id'])) {
-        return;
-    }
 
-    $id = $_POST['edit_id'];
-    $title = $_POST['edit_title'];
-    $content = $_POST['edit_content'];
-
-    $query = "UPDATE `page_list` SET `page_title`='".$title."' , `page_content`=' ".htmlspecialchars($content)." ' WHERE `id`=".$id." LIMIT 1";
-    $result = mysqli_query($link, $query);
-
-    if($result) {
-        return "<script>popupAlert('Update successful')</script>";
-    }
-    return "<script>popupAlert('Failed updating record!')</script>";
-
-}
-
-// Funkcja po wciśnięciu przycisku delete przechwyci id strony na której zainkowowaliśmy usuwanie i wykona odpowiednie zapytanie do bazy SQL aby tego dokonać.
-function handleDeletePage() {
-    include('cfg.php');
-    if(empty($_POST['id_page_to_delete'])) {
-        return;
-    }
-    $id = $_POST['id_page_to_delete'];
-    $query = "DELETE FROM `page_list` WHERE id=$id LIMIT 1";
-    $result = mysqli_query($link, $query);
-
-    if($result) {
-        return "<script>popupAlert('Deleted successfully')</script>";
-
-    }
-    return "<script>popupAlert('Failed deleting record!')</script>";
-}
 
 echo "<button onclick=location.href='?idp=' type='button'>
     Back
@@ -134,9 +98,31 @@ if($_SESSION['loginFailed'] == 0) {
     Mailer
     </button>";
 
+    echo "<button onclick=location.href='?idp=shop' type='button'>
+    Shop
+    </button>";
+
     echo EditPageForm();
-    echo handleEditPage();
-    echo handleDeletePage();
+
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        include("page_management_functions.php");
+
+        if(isset($_POST['edit_id'])) {
+            echo handleEditPage();
+
+            header("Location: ?idp=admin");
+            exit;
+        }
+
+        if(isset($_POST['id_page_to_delete'])) {
+            echo handleDeletePage();
+
+            header("Location: ?idp=admin");
+            exit;
+        }
+    }
+
     ListPages();
 } else {
     // w przeciwnym razie wypisuje mu na ekran że jest nie zalogowany

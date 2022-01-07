@@ -9,7 +9,7 @@ function LoginForm() {
                 <form method="post" name="LoginForm">
                 <table class="logowanie">
                     <tr><td class=""log4_t>[login]</td><td><input type="text" name="login_email" class="logowanie" /></td></tr>
-                    <tr><td class=""log4_t>[haslo]</td><td><input type="text" name="login_password" class="logowanie" /></td></tr>
+                    <tr><td class=""log4_t>[haslo]</td><td><input type="password" name="login_password" class="logowanie" /></td></tr>
                     <tr><td class=""log4_t>&nbsp;</td><td><input type="submit" name="x1_submit" class="logowanie" value="zaloguj" /></td></tr>
                 </table>
             </form>
