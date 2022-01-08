@@ -14,8 +14,10 @@
 </script>
 <body>
     <?php
+    session_start();
     //    include("showpage.php");
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+
 
     if ($_GET['idp'] == "") $site = './html/main.html';
     if ($_GET['idp'] == "khalifa") $site = './html/khalifa.html';
@@ -30,11 +32,18 @@
     if ($_GET['idp'] == "mailer") $site = './mailer.php';
     if ($_GET['idp'] == "shop") $site = "./categories_management.php";
 
+    if (isset($_SESSION['message'])) {
+        print '<script type="text/javascript">alert("' .$_SESSION['message']. '");</script>';
+    }
+    unset($_SESSION['message']);
+
     if (file_exists($site)) {
         include($site);
     } else {
         throw new ErrorException($site . " doesn't exists!");
     }
+
+
 
     include("./php/labor_156031_1.php");
     ?>

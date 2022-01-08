@@ -14,9 +14,9 @@ function handle_add_category() {
 
 
     if($result) {
-        return "<script>popupAlert('Added successfully')</script>";
+        return 'Added successfully';
     }
-    return "<script>popupAlert('Failed adding page')</script>";
+    return 'Failed adding page';
 }
 
 function handle_edit_category() {
@@ -33,9 +33,9 @@ function handle_edit_category() {
 
 
     if($result) {
-        return "<script>popupAlert('Update successful')</script>";
+        return 'Update successful';
     }
-    return "<script>popupAlert('Failed updating record!')</script>";
+    return 'Failed updating record!';
 }
 
 
@@ -48,13 +48,8 @@ function handle_delete_category() {
     $result = mysqli_query($link, $delete_query);
 
     if($result) {
-        return "<script>popupAlert('Deleted successfully')</script>";
+        return 'Deleted successfully';
 
     }
-    return "<script>popupAlert('Failed deleting record!')</script>";
+    return 'Failed deleting record!';
 }
-include "cfg.php";
-
-echo "<button onclick=location.href='?idp=admin' type='button'>
-    Back
-    </button>";
