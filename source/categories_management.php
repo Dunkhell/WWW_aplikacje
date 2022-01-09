@@ -60,7 +60,7 @@ function list_products($category_id) {
                     <td>$status_dostepnosci</td>
                     <td>$kategoria</td>
                     <td>$gabaryt</td>
-                    <td><img src='data:image/jpeg;base64, $zdjecie'/></td>
+                    <td><img style='width: 75px; height: 75px' src='data:image/jpeg;base64, $zdjecie'/></td>
                     <td><form method='post'>
                         <input type='hidden' name='product_update_id' value='".$id."'/>
                         <input type='submit' name='update_product' value='Edit'/>
