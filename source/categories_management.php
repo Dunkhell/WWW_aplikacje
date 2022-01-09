@@ -21,11 +21,7 @@ function list_products($category_id) {
         $zdjecie = base64_encode($row['zdjecie']);
         $buyable = true;
 
-        if($kategoria != $category_id) {
-            echo "Co jest kurwa?????";
-        }
-
-        if($data_wygasniecia > date("Y-m-d") || $ilosc <= 0 || $status_dostepnosci == 0) {
+        if(date("Y-m-d", strtotime($data_wygasniecia)) < date("Y-m-d") || $ilosc <= 0 || $status_dostepnosci == 0) {
             $buyable = false;
         }
 
@@ -349,6 +345,7 @@ function edit_product_form() {
             <form method='post' enctype='multipart/form-data'>
             <table style='width: 100%'>
             <thead>
+                    <td><span>ID</span></td>
                     <th><span>opis</span></th>
                     <th><span>data utworzenia</span></th>
                     <th><span>data wygasniecia</span></th>
@@ -363,38 +360,41 @@ function edit_product_form() {
                 <tbody>
                     <tr>
                     <td>
-                    <input style='width: 95%' type='text' name='new_product_opis' value='$opis'/>
+                    <input type='text' name='update_product_id' value='$id' readonly/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='date' name='new_product_date' value='$data_utworzenia'/>
+                    <input style='width: 95%' type='text' name='update_product_opis' value='$opis'/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='date' name='new_product_expiration' value='$data_wygasniecia'/>
+                    <input style='width: 95%' type='date' name='update_product_date' value='$data_utworzenia'/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='number' name='new_product_netto' value='$cena_netto'/>
+                    <input style='width: 95%' type='date' name='update_product_expiration' value='$data_wygasniecia'/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='number' name='new_product_vat' value='$vat'/>
+                    <input style='width: 95%' type='number' name='update_product_netto' value='$cena_netto'/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='number' name='new_product_ilosc' value='$ilosc'/>
+                    <input style='width: 95%' type='number' name='update_product_vat' value='$vat'/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='text' name='new_product_status' value='$status_dostepnosci'/>
+                    <input style='width: 95%' type='number' name='update_product_ilosc' value='$ilosc'/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='text' name='new_product_category' value='$kategoria'/>
+                    <input style='width: 95%' type='text' name='update_product_status' value='$status_dostepnosci'/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='number' name='new_product_gabaryt' value='$gabaryt'/>
+                    <input style='width: 95%' type='text' name='update_product_category' value='$kategoria'/>
+                    </td>
+                    <td>
+                    <input style='width: 95%' type='number' name='update_product_gabaryt' value='$gabaryt'/>
                     </td>
                     <td>
                     <img src='data:image/jpeg;base64, $zdjecie'/>
-                    <input type='file' name='new_product_photo' value='$zdjecie'/>
+                    <input type='hidden' name='defaultphoto' value='$zdjecie'>
+                    <input type='file' name='updateproductphoto' value='$zdjecie'/>
                     </td>
-                    </tr> 
-                    <input type='hidden' name='product_to_update_id' value='$id'/>
+                    </tr>                     
                 </tbody>
                 </table>
             <button type='submit'>Save</button>
@@ -407,6 +407,8 @@ function edit_product_form() {
     }
     return "Error parsing product from given id {$product_id}";
 }
+
+include("cfg.php");
 
 echo "<button onclick=location.href='?idp=' type='button'>
     Back
@@ -474,7 +476,7 @@ if($_SESSION['loginFailed'] == 0) {
             exit;
         }
 
-        if(isset($_POST['product_to_update_id'])) {
+        if(isset($_POST['update_product_id'])) {
             $message = handle_edit_product();
             $_SESSION['message'] = $message;
             header("Location: ?idp=shop");

@@ -16,7 +16,7 @@ function handle_add_category() {
     if($result) {
         return 'Added successfully';
     }
-    return 'Failed adding page';
+    return mysqli_errno($link) . ": " . mysqli_error($link);
 }
 
 function handle_edit_category() {
@@ -35,7 +35,7 @@ function handle_edit_category() {
     if($result) {
         return 'Update successful';
     }
-    return 'Failed updating record!';
+    return mysqli_errno($link) . ": " . mysqli_error($link);
 }
 
 
@@ -51,5 +51,5 @@ function handle_delete_category() {
         return 'Deleted successfully';
 
     }
-    return 'Failed deleting record!';
+    return mysqli_errno($link) . ": " . mysqli_error($link);
 }

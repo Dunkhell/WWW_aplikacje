@@ -4,52 +4,56 @@ session_start();
 function handle_add_product() {
     include('cfg.php');
 
-
-    $opis = $_GET['new_product_opis'];
-    $data_utworzenia = $_GET['new_product_date'];
-    $data_wygasniecia = $_GET['new_product_expiration'];
-    $cena_netto = $_GET['new_product_netto'];
-    $vat = $_GET['new_product_vat'];
-    $category = $_GET['new_product_category'];
-    $ilosc = $_GET['new_product_ilosc'];
-    $status_dostepnosci = $_GET['new_product_status'];
-    $gabaryt = $_GET['new_product_gabaryt'];
-    $zdjecie_dane = file_get_contents($_FILES['newproductphoto']['tmp_name']);
+    $opis = $_POST['new_product_opis'];
+    $data_utworzenia = date('Y-m-d', strtotime($_POST['new_product_date']));
+    $data_wygasniecia = date('Y-m-d', strtotime($_POST['new_product_expiration']));
+    $cena_netto = $_POST['new_product_netto'];
+    $vat = $_POST['new_product_vat'];
+    $category = $_POST['new_product_category'];
+    $ilosc = $_POST['new_product_ilosc'];
+    $status_dostepnosci = $_POST['new_product_status'];
+    $gabaryt = $_POST['new_product_gabaryt'];
+    $zdjecie_dane = bin2hex(file_get_contents($_FILES['newproductphoto']['tmp_name']));
 
 
     $query = "INSERT INTO `product` (`opis`, `data_utworzenia`, `data_wygasniecia`, `cena_netto`, `vat`, `ilosc`, `status_dostepnosci`, `kategoria`, `gabaryt`, `zdjecie`) VALUES 
-            ($opis, $data_utworzenia, $data_wygasniecia, $cena_netto, $vat, $ilosc, $status_dostepnosci, $category, $gabaryt, $zdjecie_dane)";
+            ($opis, '$data_utworzenia', '$data_wygasniecia', $cena_netto, $vat, $ilosc, $status_dostepnosci, $category, $gabaryt, 0x$zdjecie_dane)";
     $result = mysqli_query($link, $query);
+
+    $_SESSION['query'] = $query;
 
     if($result) {
         return 'Added successfully';
     }
-    return 'Failed adding page';
+    return mysqli_errno($link) . ": " . mysqli_error($link);
 }
 
 function handle_edit_product() {
     include('cfg.php');
 
-    $id = $_GET['product_update_id'];
-    $opis = $_GET['new_product_opis'];
-    $data_utworzenia = $_GET['new_product_date'];
-    $data_wygasniecia = $_GET['new_product_expiration'];
-    $cena_netto = $_GET['new_product_netto'];
-    $vat = $_GET['new_product_vat'];
-    $category = $_GET['new_product_category'];
-    $ilosc = $_GET['new_product_ilosc'];
-    $status_dostepnosci = $_GET['new_product_status'];
-    $gabaryt = $_GET['new_product_gabaryt'];
-    $zdjecie_dane = file_get_contents($_FILES['new_product_photo']);
-
-    $query =" UPDATE `product` SET `opsis` = $opis, `data_utworzenia` = $data_utworzenia, `data_wygasniecia` = $data_wygasniecia, `cena_netto` = $cena_netto, `vat` = $vat, `kategoria` = $category, `ilosc` = $ilosc, 
-            `status_dostepnosci` = $status_dostepnosci, `gabaryt` = $gabaryt, `zdjecie` = $zdjecie_dane WHERE id = $id";
+    $id = $_POST['update_product_id'];
+    $opis = $_POST['update_product_opis'];
+    $data_utworzenia = date('Y-m-d', strtotime($_POST['update_product_date']));
+    $data_wygasniecia = date('Y-m-d', strtotime($_POST['update_product_expiration']));
+    $cena_netto = $_POST['update_product_netto'];
+    $vat = $_POST['update_product_vat'];
+    $category = $_POST['update_product_category'];
+    $ilosc = $_POST['update_product_ilosc'];
+    $status_dostepnosci = $_POST['update_product_status'];
+    $gabaryt = $_POST['update_product_gabaryt'];
+    if(isset($_FILES['updateproductphoto']['tmp_name']) && $_FILES['updateproductphoto']['tmp_name'] != "") {
+        $zdjecie_dane = bin2hex(file_get_contents($_FILES['updateproductphoto']['tmp_name']));
+    } else {
+        $zdjecie_dane = bin2hex(base64_decode($_POST['defaultphoto']));
+    }
+    $query =" UPDATE `product` SET `opis` = $opis, `data_utworzenia` = '$data_utworzenia', `data_wygasniecia` = '$data_wygasniecia', `cena_netto` = $cena_netto, `vat` = $vat, `kategoria` = $category, `ilosc` = $ilosc, 
+            `status_dostepnosci` = $status_dostepnosci, `gabaryt` = $gabaryt, `zdjecie` = 0x$zdjecie_dane WHERE id = $id ";
     $result = mysqli_query($link, $query);
 
     if($result) {
         return 'Update successful';
     }
-    return 'Failed updating record!';
+    return mysqli_errno($link) . ": " . mysqli_error($link);
 }
 
 
@@ -64,5 +68,5 @@ function handle_delete_product() {
         return 'Deleted successfully';
 
     }
-    return 'Failed deleting record!';
+    return mysqli_errno($link) . ": " . mysqli_error($link);
 }
