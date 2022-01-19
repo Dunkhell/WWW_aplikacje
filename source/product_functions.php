@@ -17,7 +17,7 @@ function handle_add_product() {
 
 
     $query = "INSERT INTO `product` (`opis`, `data_utworzenia`, `data_wygasniecia`, `cena_netto`, `vat`, `ilosc`, `status_dostepnosci`, `kategoria`, `gabaryt`, `zdjecie`) VALUES 
-            ($opis, '$data_utworzenia', '$data_wygasniecia', $cena_netto, $vat, $ilosc, $status_dostepnosci, $category, $gabaryt, 0x$zdjecie_dane)";
+            ('$opis', '$data_utworzenia', '$data_wygasniecia', $cena_netto, $vat, $ilosc, $status_dostepnosci, $category, $gabaryt, 0x$zdjecie_dane)";
     $result = mysqli_query($link, $query);
 
     $_SESSION['query'] = $query;
@@ -46,7 +46,7 @@ function handle_edit_product() {
     } else {
         $zdjecie_dane = bin2hex(base64_decode($_POST['defaultphoto']));
     }
-    $query =" UPDATE `product` SET `opis` = $opis, `data_utworzenia` = '$data_utworzenia', `data_wygasniecia` = '$data_wygasniecia', `cena_netto` = $cena_netto, `vat` = $vat, `kategoria` = $category, `ilosc` = $ilosc, 
+    $query ="UPDATE `product` SET `opis` = '$opis', `data_utworzenia` = '$data_utworzenia', `data_wygasniecia` = '$data_wygasniecia', `cena_netto` = $cena_netto, `vat` = $vat, `kategoria` = $category, `ilosc` = $ilosc, 
             `status_dostepnosci` = $status_dostepnosci, `gabaryt` = $gabaryt, `zdjecie` = 0x$zdjecie_dane WHERE id = $id ";
     $result = mysqli_query($link, $query);
 
