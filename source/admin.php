@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include('cfg.php');
+
 // Funkcja wylistuje kontent tabeli w bazie danych, która zawiera informacje na temat stron, w prostej do czytania tabeli
 function ListPages() {
     include "cfg.php";

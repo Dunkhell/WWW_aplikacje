@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 function list_products($category_id) {
     include ("cfg.php");
 
@@ -25,9 +26,19 @@ function list_products($category_id) {
             $buyable = false;
         }
 
+        $add_to_cart = "";
+
         $color = "white";
         if (!$buyable) {
             $color = "red";
+            $add_to_cart = "PRODUCT UNAVAILABLE";
+        } else {
+            $add_to_cart = "
+                        <form method='post'>
+                        <input type='hidden' name='add_to_cart_id' value='".$id."'/>
+                        <input type='hidden' name='add_to_cart_quantity_left' value='".$ilosc."'/>
+                        <input type='submit' name='delete' value='Add to cart'/>
+                        </form>";
         }
 
         $page_result  = "
@@ -68,7 +79,9 @@ function list_products($category_id) {
                     <form method='post'>
                         <input type='hidden' name='product_to_delete_id' value='".$id."'/>
                         <input type='submit' name='delete' value='Delete'/>
-                    </form></td>
+                    </form>
+                    $add_to_cart
+                    </td>
                     </tr>       
                 </tbody>
             </table>
@@ -284,7 +297,7 @@ function new_product_form() {
                     <input style='width: 95%' type='date' name='new_product_expiration'/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='number' name='new_product_netto'/>
+                    <input style='width: 95%' type='number' name='new_product_netto' step='0.01'/>
                     </td>
                     <td>
                     <input style='width: 95%' type='number' name='new_product_vat'/>
@@ -372,7 +385,7 @@ function edit_product_form() {
                     <input style='width: 95%' type='date' name='update_product_expiration' value='$data_wygasniecia'/>
                     </td>
                     <td>
-                    <input style='width: 95%' type='number' name='update_product_netto' value='$cena_netto'/>
+                    <input style='width: 95%' type='number' name='update_product_netto' value='$cena_netto' step='0.01'/>
                     </td>
                     <td>
                     <input style='width: 95%' type='number' name='update_product_vat' value='$vat'/>
@@ -390,7 +403,7 @@ function edit_product_form() {
                     <input style='width: 95%' type='number' name='update_product_gabaryt' value='$gabaryt'/>
                     </td>
                     <td>
-                    <img src='data:image/jpeg;base64, $zdjecie'/>
+                    <img style='width: 75px; height: 75px' src='data:image/jpeg;base64, $zdjecie'/>
                     <input type='hidden' name='defaultphoto' value='$zdjecie'>
                     <input type='file' name='updateproductphoto' value='$zdjecie'/>
                     </td>
@@ -439,6 +452,7 @@ if($_SESSION['loginFailed'] == 0) {
 
         include_once("categories_functions.php");
         include_once("product_functions.php");
+        include_once("cart_functions.php");
 
         if(isset($_POST['new_category_parent']) || isset($_POST['new_category_name'])) {
             $message = handle_add_category();
@@ -482,6 +496,15 @@ if($_SESSION['loginFailed'] == 0) {
             header("Location: ?idp=shop");
             exit;
         }
+
+
+        if(isset($_POST['add_to_cart_id'])) {
+            $message = addToCart();
+            $_SESSION['message'] = $message;
+            header("Location: ?idp=shop");
+            exit;
+        }
+
      }
 
 
